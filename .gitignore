@@ -14,3 +14,4 @@ quartz/cli/tui/dist/
 .turbo/
 docs/
 quartz/util/emojimap.json
+content/

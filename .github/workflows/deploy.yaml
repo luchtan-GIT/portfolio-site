@@ -3,6 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  repository_dispatch:
+    types: [content-updated]
   workflow_dispatch:
 
 permissions:
@@ -18,9 +20,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout Quartz
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Checkout content
+        uses: actions/checkout@v4
+        with:
+          repository: luchtan-GIT/portfolio-content
+          path: content
 
       - name: Setup Node
         uses: actions/setup-node@v4
